@@ -62,7 +62,7 @@ foreach ($forum_rewrite_rules as $rule => $rewrite_to)
 				$param_data = explode('=', $cur_param);
 
 				// Sometimes, parameters don't set a value (eg: script.php?foo), so we set them to null
-				$param_data[1] = isset($param_data[1]) ? $param_data[1] : null;
+				$param_data[1] = isset($param_data[1]) ? $param_data[1] : '';
 
 				// We don't want to be overwriting values in $_REQUEST that were set in POST or COOKIE
 				if (!isset($_POST[$param_data[0]]) && !isset($_COOKIE[$param_data[0]]))
