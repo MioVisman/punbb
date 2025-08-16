@@ -22,7 +22,12 @@ function xml_to_array($raw_xml)
 	xml_parser_set_option($xml_parser, XML_OPTION_CASE_FOLDING, 0);
 	xml_parser_set_option($xml_parser, XML_OPTION_SKIP_WHITE, 0);
 	xml_parse_into_struct($xml_parser, $raw_xml, $vals);
-	xml_parser_free($xml_parser);
+
+	if (PHP_VERSION_ID < 80000) {
+		xml_parser_free($xml_parser);
+	}
+
+	unset($xml_parser);
 
 	$_tmp = '';
 	foreach ($vals as $xml_elem)
