@@ -16,7 +16,7 @@
 */
 function utf8_ord($chr) {
 
-    $ord0 = ord($chr);
+    $ord0 = ord($chr[0]);
 
     if ( $ord0 >= 0 && $ord0 <= 127 ) {
         return $ord0;
