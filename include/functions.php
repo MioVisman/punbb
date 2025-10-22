@@ -374,7 +374,7 @@ function get_remote_file($url, $timeout, $head_only = false, $max_redirects = 10
 		if ($content !== false)
 		{
 			// Gotta love the fact that $http_response_header just appears in the global scope (*cough* hack! *cough*)
-			$result['headers'] = $http_response_header;
+			$result['headers'] = PHP_VERSION_ID >= 80400 ? http_get_last_response_headers() : $http_response_header;
 			if (!$head_only)
 				$result['content'] = $content;
 		}
