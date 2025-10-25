@@ -257,7 +257,11 @@ function get_remote_file($url, $timeout, $head_only = false, $max_redirects = 10
 		// Grab the page
 		$content = @curl_exec($ch);
 		$responce_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-		curl_close($ch);
+		if (PHP_VERSION_ID < 80000) {
+			curl_close($ch);
+		}
+		unset($ch);
+
 
 		// Process 301/302 redirect
 		if ($content !== false && ($responce_code == '301' || $responce_code == '302') && $max_redirects > 0)
