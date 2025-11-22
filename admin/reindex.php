@@ -72,7 +72,7 @@ if (isset($_GET['i_per_page']) && isset($_GET['i_start_at']))
 				$result = $forum_db->query('ALTER TABLE '.$forum_db->prefix.'search_words auto_increment=1') or error(__FILE__, __LINE__);
 				break;
 
-			case 'pgsql';
+			case 'pgsql':
 				$result = $forum_db->query('SELECT setval(\''.$forum_db->prefix.'search_words_id_seq\', 1, false)') or error(__FILE__, __LINE__);
 		}
 	}
