@@ -199,7 +199,7 @@ function forum_config_add($name, $value)
 		$query = array(
 			'INSERT'	=> 'conf_name, conf_value',
 			'INTO'		=> 'config',
-			'VALUES'	=> '\''.$name.'\', \''.$value.'\''
+			'VALUES'	=> '\''.$forum_db->escape($name).'\', \''.$forum_db->escape($value).'\''
 		);
 		$forum_db->query_build($query) or error(__FILE__, __LINE__);
 	}

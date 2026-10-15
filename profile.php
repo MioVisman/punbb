@@ -2098,9 +2098,9 @@ if ($forum_page['has_required']): ?>
 						<span class="fld-input"><input type="url" id="fld<?php echo $forum_page['fld_count'] ?>" name="form[linkedin]" value="<?php echo(isset($form['linkedin']) ? forum_htmlencode($form['linkedin']) : forum_htmlencode($user['linkedin'])) ?>" size="35" maxlength="80" /></span>
 					</div>
 				</div>
-<?php ($hook = get_hook('pf_change_details_identity_pre_contact_fieldset_end')) ? eval($hook) : null; ?>				
+<?php ($hook = get_hook('pf_change_details_identity_pre_contact_fieldset_end')) ? eval($hook) : null; ?>
 			</fieldset>
-<?php ($hook = get_hook('pf_change_details_identity_contact_fieldset_end')) ? eval($hook) : null; ?>			
+<?php ($hook = get_hook('pf_change_details_identity_contact_fieldset_end')) ? eval($hook) : null; ?>
 			<fieldset class="frm-group group<?php echo ++$forum_page['group_count'] ?>">
 				<legend class="group-legend"><strong><?php echo $lang_profile['Contact messengers legend'] ?></strong></legend>
 <?php ($hook = get_hook('pf_change_details_identity_pre_jabber')) ? eval($hook) : null; ?>
@@ -2914,14 +2914,14 @@ if ($forum_page['has_required']): ?>
 					if ($cur_category)
 						 echo "\n\t\t\t\t\t\t".'</fieldset>'."\n";
 
-					echo "\t\t\t\t\t\t".'<fieldset>'."\n\t\t\t\t\t\t\t".'<legend><span>'.$cur_forum['cat_name'].':</span></legend>'."\n";
+					echo "\t\t\t\t\t\t".'<fieldset>'."\n\t\t\t\t\t\t\t".'<legend><span>'.forum_htmlencode($cur_forum['cat_name']).':</span></legend>'."\n";
 					$cur_category = $cur_forum['cid'];
 				}
 
 				$moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
 
 				echo "\t\t\t\t\t\t\t".'<div class="checklist-item"><span class="fld-input"><input type="checkbox" id="fld'.(++$forum_page['fld_count']).'" name="moderator_in['.$cur_forum['fid'].']" value="1"'.((in_array($id, $moderators)) ? ' checked="checked"' : '').' /></span> <label for="fld'.$forum_page['fld_count'].'">'.forum_htmlencode($cur_forum['forum_name']).'</label></div>'."\n";
-				
+
 				($hook = get_hook('pf_change_details_admin_forum_loop_end')) ? eval($hook) : null;
 			}
 

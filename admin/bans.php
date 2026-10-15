@@ -202,7 +202,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 				<div class="sf-set set<?php echo ++$forum_page['item_count'] ?>">
 					<div class="sf-box text">
 						<label for="fld<?php echo ++$forum_page['fld_count'] ?>"><span><?php echo $lang_admin_bans['IP-addresses to ban label'] ?></span> <small><?php echo $lang_admin_bans['IP-addresses help']; if ($ban_user != '' && isset($user_id)) echo ' '.$lang_admin_bans['IP-addresses help stats'].'<a href="'.forum_link($forum_url['admin_users']).'?ip_stats='.$user_id.'">'.$lang_admin_bans['IP-addresses help link'].'</a>' ?></small></label><br />
-						<span class="fld-input"><input type="text" id="fld<?php echo $forum_page['fld_count'] ?>" name="ban_ip" size="40" maxlength="255" value="<?php if (isset($ban_ip)) echo $ban_ip; ?>" /></span>
+						<span class="fld-input"><input type="text" id="fld<?php echo $forum_page['fld_count'] ?>" name="ban_ip" size="40" maxlength="255" value="<?php if (isset($ban_ip)) echo forum_htmlencode($ban_ip); ?>" /></span>
 					</div>
 				</div>
 <?php ($hook = get_hook('aba_add_edit_ban_pre_message')) ? eval($hook) : null; ?>
@@ -216,7 +216,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 				<div class="sf-set set<?php echo ++$forum_page['item_count'] ?>">
 					<div class="sf-box text">
 						<label for="fld<?php echo ++$forum_page['fld_count'] ?>"><span><?php echo $lang_admin_bans['Expire date label'] ?></span> <small><?php echo $lang_admin_bans['Expire date help'] ?></small></label><br />
-						<span class="fld-input"><input type="text" id="fld<?php echo $forum_page['fld_count'] ?>" name="ban_expire" size="20" maxlength="10" value="<?php if (isset($ban_expire)) echo $ban_expire; ?>" /></span>
+						<span class="fld-input"><input type="text" id="fld<?php echo $forum_page['fld_count'] ?>" name="ban_expire" size="20" maxlength="10" value="<?php if (isset($ban_expire)) echo forum_htmlencode($ban_expire); ?>" /></span>
 					</div>
 				</div>
 <?php ($hook = get_hook('aba_add_edit_ban_criteria_pre_fieldset_end')) ? eval($hook) : null; ?>
@@ -530,7 +530,7 @@ if ($forum_page['num_bans'] > 0)
 			$forum_page['ban_info']['email'] = '<li><span>'.$lang_admin_bans['E-mail'].'</span> <strong>'.forum_htmlencode($cur_ban['email']).'</strong></li>';
 
 		if ($cur_ban['ip'] != '')
-			$forum_page['ban_info']['ip'] = '<li><span>'.$lang_admin_bans['IP-ranges'].'</span> <strong>'.$cur_ban['ip'].'</strong></li>';
+			$forum_page['ban_info']['ip'] = '<li><span>'.$lang_admin_bans['IP-ranges'].'</span> <strong>'.forum_htmlencode($cur_ban['ip']).'</strong></li>';
 
 		if ($cur_ban['expire'] != '')
 			$forum_page['ban_info']['expire'] = '<li><span>'.$lang_admin_bans['Expires'].'</span> <strong>'.format_time($cur_ban['expire'], 1).'</strong></li>';
